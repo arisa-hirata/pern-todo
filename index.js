@@ -15,6 +15,8 @@ app.use(express.json()); // => allows up to access the req.body
 // app.use(express.static(path.join(__dirname, "client/build")));
 // app.use(express.static("./client/build"));
 
+console.log("Database_URL", process.env.DATABASE_URL);
+
 if (process.env.NODE_ENV === "production") {
     // server static content
     // npm run build
@@ -24,7 +26,6 @@ if (process.env.NODE_ENV === "production") {
 console.log(__dirname);
 
 // ROUTES //
-
 // get all todos
 app.get("/todos", async(req, res) => {
     try {
@@ -35,7 +36,6 @@ app.get("/todos", async(req, res) => {
         console.error(err.message);
     }
 });
-
 
 // get a todo
 app.get("/todos/:id", async(req, res) => {
