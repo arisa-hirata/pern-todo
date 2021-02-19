@@ -18,7 +18,7 @@ app.use(express.json()); // => allows up to access the req.body
 if (process.env.NODE_ENV === "production") {
     // server static content
     // npm run build
-    app.use(express.static(path.join(__dirname, "./client/build")));
+    app.use(express.static(path.join(__dirname, "client/build")));
 }
 
 console.log(__dirname);
@@ -42,7 +42,8 @@ app.post("/todos", async (req, res) => {
 // get all todos
 app.get("/todos", async(req, res) => {
     try {
-        const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id DESC");
+        // const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id DESC");
+        const allTodos = await pool.query("SELECT * FROM todo");
         res.json(allTodos.rows);
     } catch(err) {
         console.error(err.message);
@@ -96,7 +97,7 @@ app.delete("/todos/:id", async(req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "client/build/index.html"));
 });
 
 app.listen(PORT, () => {
