@@ -15,7 +15,7 @@ app.use(express.json()); // => allows up to access the req.body
 // app.use(express.static(path.join(__dirname, "client/build")));
 // app.use(express.static("./client/build"));
 
-console.log("Database_URL", process.env.DATABASE_URL);
+console.log("Database_URL", process.env.DATABASE_PRODUCT);
 
 if (process.env.NODE_ENV === "production") {
     // server static content
