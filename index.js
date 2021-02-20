@@ -15,7 +15,7 @@ app.use(express.json()); // => allows up to access the req.body
 // app.use(express.static(path.join(__dirname, "client/build")));
 // app.use(express.static("./client/build"));
 
-console.log("Database_URL", process.env.DATABASE_PRODUCT);
+// console.log("Database_URL", process.env.DATABASE_PRODUCT);
 
 if (process.env.NODE_ENV === "production") {
     // server static content
@@ -23,14 +23,13 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "client/build")));
 }
 
-console.log(__dirname);
 
 // ROUTES //
 // get all todos
 app.get("/todos", async(req, res) => {
     try {
-        // const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id DESC");
-        const allTodos = await pool.query("SELECT * FROM todo");
+        const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id DESC");
+        // const allTodos = await pool.query("SELECT * FROM todo");
         res.json(allTodos.rows);
     } catch(err) {
         console.error(err.message);
@@ -70,7 +69,6 @@ app.post("/todos", async (req, res) => {
 app.put("/todos/:id", async(req, res) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const { description } = req.body;
         const uodateTodo = await pool.query(
             "UPDATE todo SET description = $1 WHERE todo_id = $2",

@@ -8,6 +8,6 @@ CREATE TABLE todo(
     description VARCHAR(255)
 );
 
--- SELECT *
--- FROM todo
--- ORDER BY todo_id DESC
+SELECT *
+FROM todo
+ORDER BY todo_id DESC

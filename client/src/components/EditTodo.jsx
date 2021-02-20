@@ -4,7 +4,8 @@ const EditTodo = ({ todo }) => {
     const [description, setDescription] = useState(todo.description);
 
     // edit description function
-    const updateDescription = async(id) => {
+    const updateDescription = async (id) => {
+
         try {
             const body = { description };
 
@@ -21,7 +22,6 @@ const EditTodo = ({ todo }) => {
         }
     }
 
-
     return (
         <Fragment>
             <button
@@ -36,6 +36,7 @@ const EditTodo = ({ todo }) => {
             <div
                 className="modal"
                 id={`id${todo.todo_id}`}
+                onClick={() => setDescription(todo.description)}
             >
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -66,9 +67,9 @@ const EditTodo = ({ todo }) => {
                         type="button"
                         className="btn btn-success"
                         data-dismiss="modal"
-                        onClick={e =>updateDescription(e)}
+                        onClick={() =>updateDescription(todo.todo_id)}
                     >
-                        Edit Todo
+                        Edit
                     </button>
                     <button
                         type="button"
